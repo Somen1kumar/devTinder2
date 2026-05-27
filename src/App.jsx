@@ -1,10 +1,10 @@
 import { BrowserRouter, Route, Routes } from 'react-router';
-import Profile from './pages/profile';
+import Profile from './pages/profile/index';
 import Review from './pages/review/index'
 import Body from './pages/body';
 import './App.css';
-import LandingPage from './pages/landingPage';
-import HomePage from './pages/homePage';
+import LandingPage from './pages/landingPage/index';
+import HomePage from './pages/homePage/index';
 import { Provider } from 'react-redux';
 import Store from './store/store';
 

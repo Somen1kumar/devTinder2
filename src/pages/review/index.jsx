@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import RedirectLogic from "@/utils/redirectLogic";
 import fetchData from "@/utils/fetchData";
 import { FEED_FETCH } from "@/utils/constants";
-import ProfileCard from "@/components/Card";
+import ProfileCard from "@/components/Card/index";
 
 const Review = () => {
   const { loginCredentials } = RedirectLogic();

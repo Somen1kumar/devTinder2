@@ -1,6 +1,6 @@
 import React, { useState , useReducer} from "react";
 import { useDispatch } from "react-redux";
-import { loginDetails } from "@/store/loginCluster";
+import { loginDetails } from "../../store/loginCluster";
 import fetchData from "@/utils/fetchData";
 import { LOGIN_URL } from "@/utils/constants";
 import {onInputValidation} from '@/utils/inputValidation';

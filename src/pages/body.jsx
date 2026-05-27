@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
-import GlobalHeader from "@/components/globalHeader/index";
+import GlobalHeader from "@/components/GlobalHeader/index";
 import Modal from "@/modal";
 
 import { loginDetails } from "../store/loginCluster";

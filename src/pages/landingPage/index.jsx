@@ -1,6 +1,6 @@
 import React from 'react'
 import Modal from '@/modal';
-import SignUp from '@/components/Signup/index'
+import SignUp from '@/components/Signup/index';
 
 import '@/App.css';
 import { useState } from 'react';
