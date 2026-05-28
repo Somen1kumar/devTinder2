@@ -5,11 +5,12 @@ import { useSelector } from "react-redux";
 
 const RedirectLogic = () => {
 const cookieToken = getCookie("token") || "";
+const loginCredentials1 = sessionStorage.getItem("currentLoggedInUser") || '';
 
   // const loginCredentials = useSelector(
   //   (itr) => itr?.loginReducer?.loginDetails?.loginData,
   // );
-  const loginCredentials = JSON.parse(sessionStorage.getItem("currentLoggedInUser"));
+  const loginCredentials = loginCredentials1 ? JSON.parse(loginCredentials1): '';
   const currentPathName = window?.location?.pathname || '';
   const navigation = useNavigate();
   useEffect(() => {
