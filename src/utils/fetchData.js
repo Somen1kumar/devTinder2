@@ -3,11 +3,17 @@
 
 
 const fetchData = async (url , type, bodyData = {}) => {
+    let newUrl = "";
 
     let defaultConfigs = {
         method: type,
         credentials: "include",
     };
+    if(window.location.hostname === "localhost") {
+        newUrl = `http://localhost:3000${url}`
+    } else {
+        newUrl = `/api${url}`
+    }
 
     if(type === "POST" || type === "PATCH") {
         defaultConfigs = {
@@ -18,7 +24,7 @@ const fetchData = async (url , type, bodyData = {}) => {
         }
     }
 
-    const fetcher = await fetch(url, defaultConfigs);
+    const fetcher = await fetch(newUrl, defaultConfigs);
     const responce = await fetcher.json();
 
     if(!responce.errorCode) {
