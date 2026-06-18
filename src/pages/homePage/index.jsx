@@ -31,22 +31,6 @@ function HomePage() {
       e.preventDefault();
     setErrorMessage("");
     }
-  //   const settings = {
-  //     dots: false,           // Shows navigation dots at the bottom
-  //     infinite: true,
-  //     arrow: true,       // Infinite looping
-  //     speed: 500,           // Transition speed in ms
-  //     slidesToShow: 1,      // Number of slides to show at once on desktop
-  //     slidesToScroll: 1,    // Number of slides to scroll at a time
-  //     autoplay: false,       // Auto-playing slides
-  //     autoplaySpeed: 3000,  // Delay between auto-scrolls
-  // };
-  // const slideData = [
-  //   { id: 1, title: "Sarah Jenkins", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&q=80" },
-  //   { id: 2, title: "Alex Rivera", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&q=80" },
-  //   { id: 3, title: "Emma Watson", img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&q=80" },
-  //   { id: 4, title: "David Cho", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&q=80" },
-  // ];
 
   return (
       <div className='right flex flex-col gap-4 overflow-auto my-4 lg:w-[50vw] lg:h-[98vh] m-auto'>

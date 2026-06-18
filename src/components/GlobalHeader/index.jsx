@@ -104,7 +104,10 @@ const GlobalHeader = (props) => {
                   </Link>
                 </li>
                 <li className="text-left px-3">
-                  <Link to={"/review"}>Review Connections</Link>
+                  <Link to={"/review"}>Review</Link>
+                </li>
+                <li className="text-left px-3">
+                  <Link to={"/mutualConnection"}>Mutual Connections</Link>
                 </li>
                 <li
                   className="text-left px-3 cursor-pointer"

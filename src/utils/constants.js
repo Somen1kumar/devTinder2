@@ -14,3 +14,7 @@ export const FEED_URL = "/user/feed?page=1&limit=20";
 export const SENT_CONNECTION = "/request/sent";
 
 export const FEED_FETCH = "/request/review";
+
+export const GET_MUTUAL_CONNECTIONS = "/user/user_connections";
+
+export const RETRIEVE_CHAT = "/chat/retrieveChat/:targetId"

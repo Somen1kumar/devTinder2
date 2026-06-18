@@ -21,6 +21,7 @@ const Review = () => {
         if(!updateStatus?.errorCode) {
 
             const newArr = data?.filter(item => item?.fromUserId?._id.toString() !== _id.toString());
+            setData(newArr);
             setFilterData(newArr);
             setEmptyConnectionReqMessage("All Pending Request is UpToDate");
         }
