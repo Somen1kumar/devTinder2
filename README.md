@@ -13,6 +13,7 @@ to Update COde
         - sudo apt update
         - sudo apt install nginx
     - sudo systemctl start nginx
+    - sudo systemctl restart nginx
     - sudo systemctl enable nginx
     - cd /var/www/html
     - cd 

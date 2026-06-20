@@ -5,6 +5,8 @@ import CreateSocket from "@/utils/socket";
 import { useSelector } from "react-redux";
 import { RETRIEVE_CHAT } from "../../utils/constants";
 import fetchData from "../../utils/fetchData";
+import { createObjectWithTimeStamp } from "@/utils/helperFunction";
+import { sortedData } from "../../utils/helperFunction";
 
 
 export default function ChatBox() {
@@ -34,9 +36,18 @@ export default function ChatBox() {
             }
             return obj;
         });
-        setMessages([ ...newArr]);
-        console.log(newArr);
-        console.log(fetcher);
+        // const createObjectWithTimeStamp = newArr.reduce((acc,curr) => {
+        //     const currentDay = new Date(curr.id).toLocaleDateString();
+        //     if(!acc[currentDay]) {
+        //         acc[currentDay] = []
+        //     }
+        //     acc[currentDay].push(curr);
+        //     return acc;
+
+        // },{});
+        const createObj = createObjectWithTimeStamp(newArr);
+        setMessages(createObj);
+        console.log(createObj);
 
     }
     fetchChat();
@@ -44,20 +55,28 @@ export default function ChatBox() {
   useEffect(() => {
     const socket = CreateSocket();
     if(targetObj) {
-        socket.emit("joinChat", {targetObj });
+        socket?.emit("joinChat", {targetObj });
     }
-    socket.on("updatedMessage", ({userInfo, text, id, fromUserId }) => {
+    socket?.on("updatedMessage", ({userInfo, text, id, fromUserId, messages }) => {
         const newMessage = {
             id: id,
             text: text,
             userInfo: userInfo,
             userId: fromUserId
             };
-        setMessages((prev) => [...prev, newMessage]);
+        // const createObj = updateObjectWithTimeStamp(messages, newMessage);
+        let updatedMessage = JSON.parse(JSON.stringify(messages));
+        const currentKey = new Date(id).toLocaleDateString('en-GB');
+        if(!updatedMessage[currentKey]) {
+            updatedMessage[currentKey] = [];
+        }
+        updatedMessage[currentKey].push(newMessage);
+        const sortUpdatedData = sortedData(updatedMessage);
+        setMessages(sortUpdatedData);
 
     }) 
     return () => {
-        socket.disconnect();
+        socket?.disconnect();
     }
   }, [targetObj])
   useEffect(() => {
@@ -75,7 +94,7 @@ export default function ChatBox() {
       fromUserId: currentLoggedInUser.id,
       targetObj: targetObj
     };
-    socket.emit("sendMessage", { newMessage });
+    socket?.emit("sendMessage", { newMessage, messages });
 
     // setMessages((prev) => [...prev, newMessage]);
     setInput("");
@@ -103,7 +122,7 @@ export default function ChatBox() {
   }
 
   return (
-    <div className="chat-container">
+    <div className="chat-container w-[90vw] h-[78vh] lg:w-[70vw] lg:h-[90vh]">
       {/* Header */}
       <div className="chat-header">
         {`Chatting with ${chattingInfo?.firstName} ${chattingInfo?.lastName}`}
@@ -111,18 +130,29 @@ export default function ChatBox() {
 
       {/* Messages */}
       <div className="chat-body">
-        {messages?.map((msg) => (
-          <div
-            key={msg.id}
-            className={`${msg.userId ===  currentLoggedInUser.id? "self-end w-full flex flex-col items-end" : ""}`}
-          >
-            <div className="text-sm px-3 text-gray-500 w-fit">{msg.userInfo}</div>
-            <div className={`chat-message min-w-48 ${
-              msg.userId ===  currentLoggedInUser.id? "user w-[70%] text-end" : "bot"
-            }`}>{msg.text}</div>
-            <div className="text-sm px-3 text-gray-500 w-fit">{getDate(msg.id)}</div>
-          </div>
-        ))}
+        {
+            Object.keys(messages).map((item, index) =>  {
+                return (
+                    <div key={index}>
+                        <div className="text-base text-gray-500 text-center">{item}</div>
+                        {
+                            messages[item]?.map((msg) => (
+                                <div
+                                    key={msg.id}
+                                    className={`${msg.userId ===  currentLoggedInUser.id? "self-end w-full flex flex-col items-end" : ""}`}
+                                >
+                                    <div className="text-sm px-3 text-gray-500 w-fit">{msg.userInfo}</div>
+                                    <div className={`chat-message min-w-48 ${
+                                    msg.userId ===  currentLoggedInUser.id? "user w-[70%] text-end" : "bot"
+                                    }`}>{msg.text}</div>
+                                    <div className="text-sm px-3 text-gray-500 w-fit">{getDate(msg.id)}</div>
+                                </div>
+                            ))
+                        }
+                    </div>
+                )
+            })
+        }
         <div ref={messagesEndRef} />
       </div>
 

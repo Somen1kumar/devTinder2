@@ -85,7 +85,7 @@ const GlobalHeader = (props) => {
               </svg>
               <span className="badge badge-xs badge-primary indicator-item"></span>
             </div>
-            <div className="w-10 ">
+            <div className="w-10 relative ">
               <img
                 className="rounded-full cursor-pointer"
                 ref={buttonRef}
@@ -96,7 +96,7 @@ const GlobalHeader = (props) => {
               <ul
                 tabIndex="-1"
                 ref={menuRef}
-                className={`menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-1 w-52 p-2 shadow absolute text-center flex flex-col gap-3 bg-white rounded-xl border border-black ${!isLoggedInFlag && "right-[13px]"} ${profileExpand ? "" : "hidden"}`}
+                className={`menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-1 w-52 p-2 shadow absolute right-0 lg:relative text-center flex flex-col gap-3 bg-white rounded-xl border border-black ${!isLoggedInFlag && "right-[13px]"} ${profileExpand ? "" : "hidden"}`}
               >
                 <li>
                   <Link to={"/profile"} className="flex justify-between px-3">

@@ -1,6 +1,4 @@
 .chat-container {
-    width: 60%;
-    height: 90vh;
     border: 1px solid #ddd;
     display: flex;
     flex-direction: column;
